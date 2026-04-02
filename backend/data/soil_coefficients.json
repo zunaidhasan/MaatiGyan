@@ -1,0 +1,127 @@
+{
+  "_comment": "Pre-calibrated spectral coefficients for Sentinel-2 → Soil Parameter mapping. Derived from LUCAS Soil Dataset correlations and SRDI Bangladesh calibration data.",
+  "_reference": "LUCAS Soil Dataset EU (2009-2018), SRDI Soil Health Atlas Bangladesh 2021",
+  "_bands": {
+    "B4": "Red (665nm, 10m resolution)",
+    "B8": "NIR (842nm, 10m resolution)",
+    "B11": "SWIR1 (1610nm, 20m resolution)",
+    "B12": "SWIR2 (2190nm, 20m resolution)"
+  },
+
+  "soc_model": {
+    "_description": "Soil Organic Carbon (%) estimation from spectral indices",
+    "_method": "Linear regression with spectral index features (calibrated against SRDI soil maps)",
+    "B11_coeff": -1.82,
+    "B12_coeff": -1.54,
+    "BSI_coeff": -0.73,
+    "SWIR_ratio_coeff": 0.41,
+    "NDVI_coeff": 0.38,
+    "intercept": 3.65,
+    "thresholds": {
+      "low":    { "max": 1.5,  "label_bn": "কম",    "label_en": "LOW",    "icon": "🔴" },
+      "medium": { "max": 2.5,  "label_bn": "মাঝারি", "label_en": "MEDIUM", "icon": "🟡" },
+      "high":   { "max": 99.0, "label_bn": "ভালো",  "label_en": "HIGH",   "icon": "🟢" }
+    }
+  },
+
+  "nitrogen_model": {
+    "_description": "Nitrogen level estimation — correlated with SOC and NDVI",
+    "SOC_coeff": 0.095,
+    "NDVI_coeff": 0.12,
+    "intercept": 0.02,
+    "thresholds": {
+      "deficient": { "max": 0.08, "label_bn": "অপর্যাপ্ত", "label_en": "DEFICIENT", "icon": "🔴" },
+      "low":       { "max": 0.15, "label_bn": "কম",        "label_en": "LOW",        "icon": "🟠" },
+      "adequate":  { "max": 99.0, "label_bn": "পর্যাপ্ত",  "label_en": "ADEQUATE",   "icon": "🟢" }
+    }
+  },
+
+  "moisture_model": {
+    "_description": "Soil moisture stress index (0 = no stress, 1 = severe stress)",
+    "SWIR_ratio_coeff": -0.68,
+    "NDVI_coeff": -0.44,
+    "B11_coeff": 0.92,
+    "intercept": 1.12,
+    "thresholds": {
+      "low":      { "max": 0.3,  "label_bn": "কম",    "label_en": "LOW",      "icon": "💧" },
+      "moderate": { "max": 0.6,  "label_bn": "মাঝারি", "label_en": "MODERATE", "icon": "💦" },
+      "high":     { "max": 99.0, "label_bn": "বেশি",   "label_en": "HIGH",     "icon": "🌊" }
+    }
+  },
+
+  "waterlogging_model": {
+    "_description": "Waterlogging risk probability (0–1)",
+    "B8_coeff": -1.35,
+    "NDWI_coeff": 0.85,
+    "elevation_proxy_coeff": -0.22,
+    "intercept": 0.55,
+    "thresholds": {
+      "low":    { "max": 0.3,  "label_bn": "কম ঝুঁকি",    "label_en": "LOW RISK",    "icon": "✅" },
+      "medium": { "max": 0.6,  "label_bn": "মাঝারি ঝুঁকি", "label_en": "MEDIUM RISK", "icon": "⚠️" },
+      "high":   { "max": 99.0, "label_bn": "বেশি ঝুঁকি",   "label_en": "HIGH RISK",   "icon": "🚨" }
+    }
+  },
+
+  "demo_districts": {
+    "bogura": {
+      "name_bn": "বগুড়া সদর",
+      "lat": 24.851, "lon": 89.370,
+      "B4": 0.068, "B8": 0.285, "B11": 0.182, "B12": 0.109,
+      "soil_type": "loam", "district_code": "4C"
+    },
+    "sylhet": {
+      "name_bn": "সিলেট সদর",
+      "lat": 24.894, "lon": 91.869,
+      "B4": 0.042, "B8": 0.341, "B11": 0.142, "B12": 0.088,
+      "soil_type": "clay_loam", "district_code": "7A"
+    },
+    "rajshahi": {
+      "name_bn": "রাজশাহী সদর",
+      "lat": 24.374, "lon": 88.601,
+      "B4": 0.091, "B8": 0.218, "B11": 0.245, "B12": 0.158,
+      "soil_type": "barind_clay", "district_code": "2B"
+    },
+    "khulna": {
+      "name_bn": "খুলনা সদর",
+      "lat": 22.845, "lon": 89.540,
+      "B4": 0.055, "B8": 0.262, "B11": 0.198, "B12": 0.134,
+      "soil_type": "tidal_floodplain", "district_code": "5D"
+    },
+    "mymensingh": {
+      "name_bn": "ময়মনসিংহ সদর",
+      "lat": 24.748, "lon": 90.403,
+      "B4": 0.048, "B8": 0.312, "B11": 0.155, "B12": 0.092,
+      "soil_type": "brahmaputra_floodplain", "district_code": "3A"
+    },
+    "comilla": {
+      "name_bn": "কুমিল্লা সদর",
+      "lat": 23.457, "lon": 91.178,
+      "B4": 0.059, "B8": 0.298, "B11": 0.168, "B12": 0.099,
+      "soil_type": "meghna_floodplain", "district_code": "6B"
+    },
+    "rangpur": {
+      "name_bn": "রংপুর সদর",
+      "lat": 25.744, "lon": 89.254,
+      "B4": 0.074, "B8": 0.268, "B11": 0.201, "B12": 0.124,
+      "soil_type": "tista_floodplain", "district_code": "1A"
+    },
+    "chittagong": {
+      "name_bn": "চট্টগ্রাম সদর",
+      "lat": 22.332, "lon": 91.829,
+      "B4": 0.045, "B8": 0.358, "B11": 0.132, "B12": 0.076,
+      "soil_type": "hill_soil", "district_code": "8C"
+    },
+    "dhaka": {
+      "name_bn": "ঢাকা সদর",
+      "lat": 23.810, "lon": 90.412,
+      "B4": 0.082, "B8": 0.231, "B11": 0.215, "B12": 0.142,
+      "soil_type": "madhupur_clay", "district_code": "3C"
+    },
+    "dinajpur": {
+      "name_bn": "দিনাজপুর সদর",
+      "lat": 25.627, "lon": 88.634,
+      "B4": 0.079, "B8": 0.251, "B11": 0.228, "B12": 0.148,
+      "soil_type": "barind_loam", "district_code": "1B"
+    }
+  }
+}

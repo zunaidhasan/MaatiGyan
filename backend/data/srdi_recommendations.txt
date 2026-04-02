@@ -1,0 +1,275 @@
+# ============================================================
+# SRDI / BARC Fertilizer Recommendation Corpus
+# Soil Resource Development Institute + Bangladesh Agricultural
+# Research Council — Fertilizer Recommendation Guide 2023
+# Formatted for RAG ingestion into Qdrant vector database
+# ============================================================
+
+--- DOCUMENT 1 ---
+TITLE: Boro Rice Fertilizer Recommendation — Low Organic Carbon Soils
+CROP: Boro Rice (বোরো ধান)
+SEASON: Rabi (Dry Season, November–March)
+SOIL_CONDITION: SOC < 1.5%, Nitrogen Deficient
+APPLICABLE_DISTRICTS: Bogura, Rajshahi, Dinajpur, Rangpur, Gaibandha, Sirajganj
+SOURCE: BARC Fertilizer Recommendation Guide 2023, Table 14
+
+RECOMMENDATION:
+- Urea: 180 kg/bigha (vs. common practice of 260 kg — saves ৳840 per bigha)
+- TSP (Triple Super Phosphate): 55 kg/bigha
+- MoP (Muriate of Potash): 40 kg/bigha
+- Zinc Sulfate: 2 kg/bigha (CRITICAL — Barind tract is severely Zn-deficient)
+- Gypsum (Sulfur source): 15 kg/bigha if soil pH < 5.5
+
+APPLICATION SCHEDULE:
+- Basal (at transplanting): TSP 100% + MoP 50% + Zinc Sulfate 100%
+- 1st Top-dress (15–20 DAT): Urea 40%
+- 2nd Top-dress (30–35 DAT, panicle initiation): Urea 60% + MoP 50%
+
+NOTES:
+- Do NOT apply all urea at once — split application reduces losses by 35%
+- Zinc deficiency shows as bronzing of lower leaves
+- If waterlogging observed, delay MoP application
+
+---
+
+--- DOCUMENT 2 ---
+TITLE: Boro Rice Fertilizer Recommendation — Medium Organic Carbon Soils
+CROP: Boro Rice (বোরো ধান)
+SEASON: Rabi (Dry Season, November–March)
+SOIL_CONDITION: SOC 1.5%–2.5%, Nitrogen Low to Adequate
+APPLICABLE_DISTRICTS: Mymensingh, Comilla, Jamalpur, Tangail, Narsingdi
+SOURCE: BARC Fertilizer Recommendation Guide 2023, Table 15
+
+RECOMMENDATION:
+- Urea: 150 kg/bigha (saves ৳1,260 vs. common 260 kg practice)
+- TSP: 45 kg/bigha
+- MoP: 35 kg/bigha
+- Zinc Sulfate: 1.5 kg/bigha
+- Boron (Borax): 1 kg/bigha if boron deficiency suspected
+
+NOTES:
+- Medium-SOC soils in Brahmaputra floodplain have better N-retention
+- No gypsum needed if pH is 5.5–7.0
+
+---
+
+--- DOCUMENT 3 ---
+TITLE: Aman Rice Fertilizer Recommendation — Low Organic Carbon Soils
+CROP: Transplant Aman Rice (রোপা আমন ধান)
+SEASON: Kharif-2 (Wet Season, June–November)
+SOIL_CONDITION: SOC < 1.5%
+APPLICABLE_DISTRICTS: Bogura, Rajshahi, Joypurhat, Chapainawabganj
+SOURCE: BARC Fertilizer Recommendation Guide 2023, Table 8
+
+RECOMMENDATION:
+- Urea: 130 kg/bigha
+- TSP: 40 kg/bigha
+- MoP: 30 kg/bigha
+- Zinc Sulfate: 2 kg/bigha (apply if no zn applied in last 2 seasons)
+
+APPLICATION SCHEDULE:
+- Basal: TSP 100% + MoP 50% + Zinc Sulfate 100%
+- 1st Top-dress (15 DAT): Urea 40%
+- 2nd Top-dress (35 DAT): Urea 60% + MoP 50%
+
+NOTES:
+- Do NOT apply urea if standing water > 3 inches (high N loss risk)
+- Aman season benefits from green manure (Dhaincha) incorporation before planting
+
+---
+
+--- DOCUMENT 4 ---
+TITLE: Wheat Fertilizer Recommendation — Low to Medium Organic Carbon
+CROP: Wheat (গম)
+SEASON: Rabi (Cool Dry Season, November–February)
+SOIL_CONDITION: SOC < 2.5%
+APPLICABLE_DISTRICTS: Rajshahi, Dinajpur, Thakurgaon, Bogura, Rangpur
+SOURCE: BARC Fertilizer Recommendation Guide 2023, Table 22
+
+RECOMMENDATION:
+- Urea: 155 kg/bigha
+- TSP: 50 kg/bigha
+- MoP: 32 kg/bigha
+- Gypsum: 20 kg/bigha
+- Zinc Sulfate: 1 kg/bigha
+
+NOTES:
+- Wheat is more sensitive to waterlogging than rice — ensure drainage
+- Barind tract wheat benefits from residual phosphate from previous boro crop
+
+---
+
+--- DOCUMENT 5 ---
+TITLE: Mustard/Rapeseed Fertilizer Recommendation
+CROP: Mustard (সরিষা)
+SEASON: Rabi (October–January)
+SOIL_CONDITION: All SOC levels
+APPLICABLE_DISTRICTS: Meherpur, Chuadanga, Pabna, Sirajganj, Faridpur
+SOURCE: BARC Fertilizer Recommendation Guide 2023, Table 28
+
+RECOMMENDATION:
+- Urea: 120 kg/bigha
+- TSP: 55 kg/bigha (mustard is highly P-responsive)
+- MoP: 35 kg/bigha
+- Gypsum: 25 kg/bigha (CRITICAL — mustard requires sulfur)
+- Boron (Borax): 2 kg/bigha (CRITICAL — hollow stem disease prevention)
+
+NOTES:
+- Sulfur and boron are THE critical nutrients for mustard — do not skip
+- Hollow stem in mustard = boron deficiency symptom
+
+---
+
+--- DOCUMENT 6 ---
+TITLE: Potato Fertilizer Recommendation — High-Yield Varieties
+CROP: Potato (আলু) — BARI Alu-7, BARI Alu-25
+SEASON: Rabi (October–February)
+SOIL_CONDITION: SOC 1.5%–3.0% preferred
+APPLICABLE_DISTRICTS: Munshiganj, Bogura, Comilla, Rangpur, Joypurhat
+SOURCE: BARC Fertilizer Recommendation Guide 2023, Table 35
+
+RECOMMENDATION:
+- Urea: 165 kg/bigha
+- TSP: 80 kg/bigha (potato = highest P demand of all crops)
+- MoP: 75 kg/bigha (potato = highest K demand)
+- Gypsum: 20 kg/bigha
+- Zinc Sulfate: 1 kg/bigha
+- Magnesium Sulfate: 5 kg/bigha (if Mg deficient)
+
+NOTES:
+- Apply cow dung 2–3 t/bigha to improve tuber yield and soil structure
+- Ridge planting essential for drainage — waterlogging kills potato in 24 hours
+
+---
+
+--- DOCUMENT 7 ---
+TITLE: Soil Acidification Management — pH Correction Protocol
+TOPIC: Soil pH Correction and Lime Application
+SOIL_CONDITION: Soil pH < 5.5 (acid soils), common in Sylhet, Chittagong Hill Tracts, Madhupur
+APPLICABLE_DISTRICTS: Sylhet, Sunamganj, Moulvibazar, Chittagong, Rangamati, Bandarban, Tangail (Madhupur)
+SOURCE: SRDI Soil Health Report 2021, Chapter 6; BARC Acid Soil Management Guide
+
+RECOMMENDATION FOR pH CORRECTION:
+- Agricultural Lime (Dolomite): 200–300 kg/bigha if pH 4.5–5.5
+- Agricultural Lime: 100–150 kg/bigha if pH 5.5–6.0
+- Apply lime 2–3 weeks BEFORE fertilizer application
+- Retest soil pH after 1 season
+
+ADDITIONAL MEASURES:
+- Organic matter (cow dung, compost): 1–2 t/bigha improves buffering
+- Avoid ammonium-based nitrogen sources (acidifying) — use urea or nitrate forms
+- Green manure incorporation raises pH by 0.2–0.5 units over 2 seasons
+
+NOTES:
+- 42% of Bangladesh arable land now has pH < 5.5 (SRDI 2021)
+- Acidification accelerated by overuse of urea and TSP
+- Zinc availability drops sharply at pH < 5.5 — correct pH before Zn application
+
+---
+
+--- DOCUMENT 8 ---
+TITLE: Zinc Deficiency Management — Barind Tract and River Floodplains
+TOPIC: Micronutrient Management — Zinc
+SOIL_CONDITION: Zinc deficient soils (Zn < 0.8 ppm by DTPA extraction)
+APPLICABLE_DISTRICTS: Rajshahi, Bogura, Chapainawabganj, Naogaon, Natore, Dinajpur, Rangpur
+SOURCE: SRDI Micronutrient Survey 2019; BARC Fertilizer Recommendation Guide 2023
+
+SYMPTOMS:
+- Rice: Bronzing and necrosis of lower leaves at 15–25 DAT
+- Wheat: Chlorotic streaking on new leaves
+- Maize: White bud disease
+
+RECOMMENDATION:
+- Zinc Sulfate (ZnSO4·7H2O, 21% Zn): 2 kg/bigha basal application
+- Foliar spray (0.5% ZnSO4 solution): at tillering stage if deficiency appears
+- Frequency: Apply once every 2 seasons (residual effect)
+
+NOTES:
+- Barind Tract (NW Bangladesh) — 78% of soils zinc-deficient (SRDI 2019)
+- High-yield varieties demand more zinc than traditional varieties
+- Never mix Zn sulfate with phosphate fertilizers — apply separately
+
+---
+
+--- DOCUMENT 9 ---
+TITLE: Waterlogging Management — Tidal Floodplain Soils
+TOPIC: Drainage and Waterlogging Risk Mitigation
+SOIL_CONDITION: Waterlogging risk HIGH, tidal/coastal soils
+APPLICABLE_DISTRICTS: Khulna, Bagerhat, Satkhira, Barguna, Patuakhali, Bhola
+SOURCE: SRDI Soil Health Report 2021, Chapter 9
+
+CROP ADAPTATIONS:
+- Use submergence-tolerant rice varieties: BRRI dhan51, BRRI dhan52, Swarna-Sub1
+- Delay transplanting until floodwater recedes (>20 cm water = crop failure risk)
+
+FERTILIZER ADJUSTMENTS:
+- Reduce Urea by 30% (waterlogged soils have denitrification losses)
+- Avoid Urea on waterlogged soil — use Prilled Urea only when water < 5cm
+- No MoP during heavy rain season (K leaching)
+- Priority: Phosphate + Zinc basal application only
+
+SALINITY CONCERNS (Coastal Districts):
+- EC > 4 dS/m: Switch to salinity-tolerant varieties (BRRI dhan47, BRRI dhan73)
+- Gypsum 50 kg/bigha can help leach sodium from saline soils
+
+---
+
+--- DOCUMENT 10 ---
+TITLE: Organic Carbon Building — Green Manure and Compost Protocols
+TOPIC: SOC Improvement Strategy
+SOIL_CONDITION: SOC < 1.5% (severely degraded soils)
+APPLICABLE_DISTRICTS: Rajshahi, Bogura, Dinajpur, Rangpur (Barind region)
+SOURCE: SRDI Soil Fertility Management Manual 2020
+
+STRATEGY:
+1. Dhaincha (Sesbania rostrata) green manure: Sow 4–6 weeks before transplanting
+   - Incorporates 40–60 kg N/bigha equivalent
+   - Raises SOC by 0.1–0.2% per season
+2. Rice straw incorporation: Do NOT burn — incorporate with Urea 5 kg/bigha
+   - Enhances microbial decomposition
+3. Poultry manure: 500 kg/bigha (basal) — especially effective for SOC building
+4. Municipal compost (if available): 1,000 kg/bigha
+
+EXPECTED OUTCOMES:
+- SOC improvement: +0.15–0.25% per year with consistent organic inputs
+- Reduced chemical fertilizer need: 15–25% reduction after 3 years
+- Improved water holding capacity — reduces irrigation need
+
+---
+
+--- DOCUMENT 11 ---
+TITLE: Bangladesh Rice Variety Guide — Boro Season (High-Yield Varieties)
+TOPIC: Variety Selection for Boro Season
+SOURCE: BRRI Variety Guide 2023
+
+RECOMMENDED VARIETIES:
+- BRRI dhan29: Classic high-yield Boro variety, 180–220 kg N/ha need, 145 days
+- BRRI dhan58: Heat-tolerant, suitable for late Boro, 160 kg N/ha need
+- BRRI dhan89: Modern variety, zinc-efficient, suitable for acid soils
+- BRRI dhan96: Premium quality, 170 kg N/ha need, 140 days
+- BINA dhan8: Suitable for saline coastal areas, Boro season
+
+NOTES:
+- BRRI dhan29 remains most popular in NW Bangladesh but requires intensive nutrient management
+- Higher-yield varieties need proportionally more zinc and potassium
+
+---
+
+--- DOCUMENT 12 ---
+TITLE: Seasonal Fertilizer Calendar — Bangladesh Crop Calendar Integration
+TOPIC: Crop Season and Fertilizer Timing
+SOURCE: BARC Agronomy Division, 2023
+
+SEASONS:
+- Boro (বোরো): November/December planting → March/April harvest (irrigated rice)
+- Aman (আমন): June/July planting → October/November harvest (rainfed rice)
+- Aus (আউশ): March/April planting → July/August harvest (early rice)
+- Rabi vegetables (রবি শস্য): October–February (potato, wheat, mustard, lentil)
+- Kharif vegetables (খরিফ শস্য): April–September (jute, vegetables)
+
+DISTRICT CROP CALENDARS:
+- Bogura: Boro Rice (Nov–Apr) → Transplant Aman (Jun–Nov) → Mustard (Oct–Dec)
+- Sylhet: Transplant Aman (Jun–Nov) → Boro Rice (Dec–Apr)
+- Rajshahi: Boro Rice (Nov–Apr) → Aman (Jul–Nov) → Wheat/Mustard (Nov–Feb)
+- Khulna: Single Aman (Jul–Nov) → Rabi vegetables or fallow (Nov–Mar)
+- Mymensingh: Boro Rice (Dec–Apr) → Aman (Jul–Nov) → Rabi crops (Nov–Feb)

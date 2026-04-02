@@ -1,0 +1,29 @@
+# --- Secrets ---
+.env
+*.json
+backend/*.json
+!backend/data/*.json
+
+# --- Temporary/Cache ---
+audio_cache/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.ipynb_checkpoints/
+
+# --- Development ---
+scripts/
+tests/
+.git
+.gitignore
+.dockerignore
+Dockerfile
+docker-compose.yml
+.env.example
+README.md
+
+# --- System ---
+.DS_Store
+Thumbs.db

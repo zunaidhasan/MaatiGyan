@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>মাটিজ্ঞান — আপনার জমির বন্ধু</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header>
+            <div class="logo">
+                <i class="fas fa-seedling"></i>
+                <h1>মাটিজ্ঞান</h1>
+            </div>
+            <p class="tagline">আপনার জমির বিশ্বস্ত সাথী</p>
+        </header>
+
+        <!-- Main Content -->
+        <main id="main-content">
+            <!-- Phase 1: Location Setup -->
+            <section id="step-location" class="step-section active">
+                <div class="icon-hero">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <h2>আপনার জমির লোকেশন দিন</h2>
+                <p>সঠিক রিপোর্টের জন্য আপনার জমির মাঝখানে গিয়ে বাটনটি টিপুন।</p>
+                
+                <button id="btn-get-location" class="btn-primary">
+                    <i class="fas fa-location-arrow"></i> লাইভ লোকেশন দিন
+                </button>
+                <div id="location-display" class="location-status">লোকেশন পাওয়া যায়নি</div>
+            </section>
+
+            <!-- Phase 2: Farmer Info -->
+            <section id="step-info" class="step-section">
+                <h2>আপনার তথ্য দিন</h2>
+                <div class="form-card">
+                    <div class="input-group">
+                        <label for="farmer-name">কৃষকের নাম</label>
+                        <input type="text" id="farmer-name" placeholder="যেমন: আব্দুর রহমান">
+                    </div>
+                    <div class="input-group">
+                        <label for="land-area">জমির পরিমাণ (বিঘা)</label>
+                        <input type="number" id="land-area" placeholder="যেমন: ১.৫" step="0.1">
+                    </div>
+                    <div class="input-group">
+                        <label for="crop-type">ফসল</label>
+                        <select id="crop-type">
+                            <option value="boro_rice">বোরো ধান</option>
+                            <option value="wheat">গম</option>
+                            <option value="maize">ভুট্টা</option>
+                        </select>
+                    </div>
+                    <button id="btn-analyze" class="btn-primary btn-glow">
+                        <i class="fas fa-microscope"></i> রিপোর্ট তৈরি করুন
+                    </button>
+                </div>
+            </section>
+
+            <!-- Phase 3: Loading -->
+            <section id="step-loading" class="step-section text-center">
+                <div class="loader-container">
+                    <div class="spinner"></div>
+                    <div class="satellite-dish">🛰️</div>
+                </div>
+                <h3>স্যাটেলাইট বিশ্লেষণ চলছে...</h3>
+                <p>একটু অপেক্ষা করুন, আমরা উপগ্রহ থেকে আপনার জমির তথ্য সংগ্রহ করছি।</p>
+            </section>
+
+            <!-- Phase 4: Results -->
+            <section id="step-report" class="step-section">
+                <div id="report-content" class="report-box">
+                    <!-- Report will be injected here -->
+                </div>
+                <div class="action-buttons">
+                    <button onclick="window.print()" class="btn-secondary">
+                        <i class="fas fa-print"></i> সেভ করুন (PDF)
+                    </button>
+                    <button onclick="location.reload()" class="btn-outline">
+                        <i class="fas fa-redo"></i> নতুন করে শুরু করুন
+                    </button>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; ২০২৫ মাটিজ্ঞান AI — বিনামূল্যে ডিজিটাল মাটি পরীক্ষা</p>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+</body>
+</html>

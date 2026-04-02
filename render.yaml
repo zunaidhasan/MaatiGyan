@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: maatigyan-platform
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn -w 4 -k uvicorn.workers.UvicornWorker backend.main:app
+    envVars:
+      - key: APP_NAME
+        value: MaatiGyan (মাটিজ্ঞান)
+      - key: DEMO_MODE
+        value: "false"
+      - key: GROQ_API_KEY
+        sync: false
+      - key: GEE_SERVICE_ACCOUNT
+        sync: false
+      - key: GEE_SERVICE_ACCOUNT_JSON
+        sync: false
+      - key: QDRANT_URL
+        sync: false
+      - key: QDRANT_API_KEY
+        sync: false
+    # High-performance disk not required as we use Cloud GEE/Groq
+    autoDeploy: true

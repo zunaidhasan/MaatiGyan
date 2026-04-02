@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MaatiGyan — Soil Intelligence Dashboard</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Leaflet JS for Maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dark-theme">
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar glass">
+            <div class="logo">
+                <span class="icon">🌱</span>
+                <h1>MaatiGyan</h1>
+                <p>মাটিজ্ঞান</p>
+            </div>
+            
+            <nav class="main-nav">
+                <div class="nav-item active" title="Live Map View">
+                    <span class="nav-icon">🌍</span>
+                    <span>Monitoring</span>
+                </div>
+                <div class="nav-item" title="Detailed Analytics">
+                    <span class="nav-icon">📊</span>
+                    <span>Analytics</span>
+                </div>
+                <div class="nav-item" title="Farmer Database">
+                    <span class="nav-icon">👨‍🌾</span>
+                    <span>Farmers</span>
+                </div>
+                <div class="nav-item" title="Settings">
+                    <span class="nav-icon">⚙️</span>
+                    <span>Settings</span>
+                </div>
+            </nav>
+
+            <div class="stats-grid">
+                <div class="stat-card glass-light">
+                    <span class="stat-label">Queries Today</span>
+                    <span class="stat-value" id="stats-queries">0</span>
+                </div>
+                <div class="stat-card glass-light">
+                    <span class="stat-label">Savings (BDT)</span>
+                    <span class="stat-value" id="stats-savings">৳0</span>
+                </div>
+            </div>
+
+            <div class="sidebar-footer">
+                <div class="status-indicator">
+                    <span class="pulse green"></span>
+                    <span>Live Monitoring Active</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar glass">
+                <div class="search-box">
+                    <input type="text" placeholder="Search by Farmer Phone / Location...">
+                </div>
+                <div class="user-profile">
+                    <div class="demo-badge">Integrated Demo Mode</div>
+                    <div class="avatar">Admin</div>
+                </div>
+            </header>
+
+            <div class="content-grid">
+                <!-- Map Section -->
+                <section class="map-section glass">
+                    <div class="section-header">
+                        <h2>Soil Intelligence Map</h2>
+                        <div class="controls">
+                            <button id="btn-simulate" class="btn btn-primary">Simulate Analysis</button>
+                        </div>
+                    </div>
+                    <div id="map"></div>
+                </section>
+
+                <!-- Activity Feed -->
+                <section class="activity-section glass">
+                    <div class="section-header">
+                        <h2>Live Activity Feed</h2>
+                        <div class="auto-scroll-toggle">
+                            <label class="switch">
+                                <input type="checkbox" checked id="feed-auto-scroll">
+                                <span class="slider round"></span>
+                            </label>
+                            <span>Live Feed</span>
+                        </div>
+                    </div>
+                    <div class="feed-container" id="activity-feed">
+                        <!-- Activity items will be injected here -->
+                        <div class="feed-placeholder">Waiting for incoming queries...</div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <div id="report-modal" class="modal-overlay hidden">
+        <div class="modal-content glass-heavy animate-pop">
+            <div class="modal-header">
+                <h3>Soil Health Report</h3>
+                <button class="close-modal" id="close-report">&times;</button>
+            </div>
+            <div class="modal-body" id="report-details">
+                <!-- Report content injected by JS -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="window.print()">Download PDF</button>
+                <button class="btn btn-primary" id="btn-share-whatsapp">Send to Farmer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+</body>
+</html>
