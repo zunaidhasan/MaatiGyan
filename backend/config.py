@@ -5,6 +5,7 @@ Loads settings from environment variables / .env file
 from pydantic_settings import BaseSettings
 from pydantic import Field
 from functools import lru_cache
+from typing import Optional
 import os
 
 
