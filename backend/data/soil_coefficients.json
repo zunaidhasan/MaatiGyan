@@ -1,6 +1,7 @@
 {
   "_comment": "Pre-calibrated spectral coefficients for Sentinel-2 → Soil Parameter mapping. Derived from LUCAS Soil Dataset correlations and SRDI Bangladesh calibration data.",
   "_reference": "LUCAS Soil Dataset EU (2009-2018), SRDI Soil Health Atlas Bangladesh 2021",
+  "_districts_expanded": "Expanded from 10 to all 64 districts of Bangladesh for better demo mode coverage across the country.",
   "_bands": {
     "B4": "Red (665nm, 10m resolution)",
     "B8": "NIR (842nm, 10m resolution)",
@@ -63,35 +64,71 @@
   },
 
   "demo_districts": {
+    "bagerhat": {
+      "name_bn": "বাগেরহাট",
+      "lat": 22.660, "lon": 89.790,
+      "B4": 0.052, "B8": 0.265, "B11": 0.195, "B12": 0.132,
+      "soil_type": "tidal_floodplain", "district_code": "5F"
+    },
+    "bandarban": {
+      "name_bn": "বান্দরবান",
+      "lat": 22.190, "lon": 92.220,
+      "B4": 0.041, "B8": 0.362, "B11": 0.128, "B12": 0.073,
+      "soil_type": "hill_soil", "district_code": "8F"
+    },
+    "barguna": {
+      "name_bn": "বরগুনা",
+      "lat": 22.150, "lon": 90.120,
+      "B4": 0.053, "B8": 0.268, "B11": 0.194, "B12": 0.131,
+      "soil_type": "tidal_floodplain", "district_code": "5C"
+    },
+    "barisal": {
+      "name_bn": "বরিশাল",
+      "lat": 22.700, "lon": 90.350,
+      "B4": 0.054, "B8": 0.264, "B11": 0.196, "B12": 0.133,
+      "soil_type": "tidal_floodplain", "district_code": "5A"
+    },
+    "bhola": {
+      "name_bn": "ভোলা",
+      "lat": 22.680, "lon": 90.650,
+      "B4": 0.055, "B8": 0.290, "B11": 0.175, "B12": 0.105,
+      "soil_type": "meghna_estuarine_floodplain", "district_code": "5E"
+    },
     "bogura": {
       "name_bn": "বগুড়া সদর",
       "lat": 24.851, "lon": 89.370,
       "B4": 0.068, "B8": 0.285, "B11": 0.182, "B12": 0.109,
       "soil_type": "loam", "district_code": "4C"
     },
-    "sylhet": {
-      "name_bn": "সিলেট সদর",
-      "lat": 24.894, "lon": 91.869,
-      "B4": 0.042, "B8": 0.341, "B11": 0.142, "B12": 0.088,
-      "soil_type": "clay_loam", "district_code": "7A"
+    "brahmanbaria": {
+      "name_bn": "ব্রাহ্মণবাড়িয়া",
+      "lat": 23.960, "lon": 91.120,
+      "B4": 0.056, "B8": 0.302, "B11": 0.165, "B12": 0.097,
+      "soil_type": "meghna_floodplain", "district_code": "6D"
     },
-    "rajshahi": {
-      "name_bn": "রাজশাহী সদর",
-      "lat": 24.374, "lon": 88.601,
-      "B4": 0.091, "B8": 0.218, "B11": 0.245, "B12": 0.158,
-      "soil_type": "barind_clay", "district_code": "2B"
+    "chandpur": {
+      "name_bn": "চাঁদপুর",
+      "lat": 23.230, "lon": 90.650,
+      "B4": 0.057, "B8": 0.296, "B11": 0.170, "B12": 0.100,
+      "soil_type": "meghna_floodplain", "district_code": "6C"
     },
-    "khulna": {
-      "name_bn": "খুলনা সদর",
-      "lat": 22.845, "lon": 89.540,
-      "B4": 0.055, "B8": 0.262, "B11": 0.198, "B12": 0.134,
-      "soil_type": "tidal_floodplain", "district_code": "5D"
+    "chapainawabganj": {
+      "name_bn": "চাঁপাইনবাবগঞ্জ",
+      "lat": 24.590, "lon": 88.270,
+      "B4": 0.089, "B8": 0.220, "B11": 0.242, "B12": 0.156,
+      "soil_type": "high_ganges_floodplain", "district_code": "2G"
     },
-    "mymensingh": {
-      "name_bn": "ময়মনসিংহ সদর",
-      "lat": 24.748, "lon": 90.403,
-      "B4": 0.048, "B8": 0.312, "B11": 0.155, "B12": 0.092,
-      "soil_type": "brahmaputra_floodplain", "district_code": "3A"
+    "chattogram": {
+      "name_bn": "চট্টগ্রাম",
+      "lat": 22.360, "lon": 91.820,
+      "B4": 0.045, "B8": 0.358, "B11": 0.132, "B12": 0.076,
+      "soil_type": "hill_soil", "district_code": "8D"
+    },
+    "chuadanga": {
+      "name_bn": "চুয়াডাঙ্গা",
+      "lat": 23.640, "lon": 88.850,
+      "B4": 0.088, "B8": 0.222, "B11": 0.240, "B12": 0.155,
+      "soil_type": "high_ganges_floodplain", "district_code": "2C"
     },
     "comilla": {
       "name_bn": "কুমিল্লা সদর",
@@ -99,17 +136,11 @@
       "B4": 0.059, "B8": 0.298, "B11": 0.168, "B12": 0.099,
       "soil_type": "meghna_floodplain", "district_code": "6B"
     },
-    "rangpur": {
-      "name_bn": "রংপুর সদর",
-      "lat": 25.744, "lon": 89.254,
-      "B4": 0.074, "B8": 0.268, "B11": 0.201, "B12": 0.124,
-      "soil_type": "tista_floodplain", "district_code": "1A"
-    },
-    "chittagong": {
-      "name_bn": "চট্টগ্রাম সদর",
-      "lat": 22.332, "lon": 91.829,
-      "B4": 0.045, "B8": 0.358, "B11": 0.132, "B12": 0.076,
-      "soil_type": "hill_soil", "district_code": "8C"
+    "coxsbazar": {
+      "name_bn": "কক্সবাজার",
+      "lat": 21.430, "lon": 91.980,
+      "B4": 0.048, "B8": 0.340, "B11": 0.145, "B12": 0.085,
+      "soil_type": "coastal_plain", "district_code": "8E"
     },
     "dhaka": {
       "name_bn": "ঢাকা সদর",
@@ -122,6 +153,300 @@
       "lat": 25.627, "lon": 88.634,
       "B4": 0.079, "B8": 0.251, "B11": 0.228, "B12": 0.148,
       "soil_type": "barind_loam", "district_code": "1B"
+    },
+    "faridpur": {
+      "name_bn": "ফরিদপুর",
+      "lat": 23.600, "lon": 89.830,
+      "B4": 0.070, "B8": 0.260, "B11": 0.200, "B12": 0.135,
+      "soil_type": "ganges_floodplain", "district_code": "3E"
+    },
+    "feni": {
+      "name_bn": "ফেনী",
+      "lat": 23.010, "lon": 91.390,
+      "B4": 0.052, "B8": 0.310, "B11": 0.160, "B12": 0.095,
+      "soil_type": "lower_meghna_floodplain", "district_code": "6E"
+    },
+    "gaibandha": {
+      "name_bn": "গাইবান্ধা",
+      "lat": 25.320, "lon": 89.540,
+      "B4": 0.072, "B8": 0.270, "B11": 0.198, "B12": 0.122,
+      "soil_type": "tista_floodplain", "district_code": "1D"
+    },
+    "gazipur": {
+      "name_bn": "গাজীপুর",
+      "lat": 24.000, "lon": 90.410,
+      "B4": 0.080, "B8": 0.235, "B11": 0.212, "B12": 0.140,
+      "soil_type": "madhupur_clay", "district_code": "3H"
+    },
+    "gopalganj": {
+      "name_bn": "গোপালগঞ্জ",
+      "lat": 23.010, "lon": 89.820,
+      "B4": 0.072, "B8": 0.255, "B11": 0.205, "B12": 0.138,
+      "soil_type": "ganges_floodplain", "district_code": "3F"
+    },
+    "habiganj": {
+      "name_bn": "হবিগঞ্জ",
+      "lat": 24.370, "lon": 91.410,
+      "B4": 0.040, "B8": 0.345, "B11": 0.140, "B12": 0.086,
+      "soil_type": "surma_floodplain", "district_code": "7C"
+    },
+    "jamalpur": {
+      "name_bn": "জামালপুর",
+      "lat": 24.920, "lon": 89.950,
+      "B4": 0.050, "B8": 0.308, "B11": 0.158, "B12": 0.094,
+      "soil_type": "brahmaputra_floodplain", "district_code": "3R"
+    },
+    "jessore": {
+      "name_bn": "যশোর",
+      "lat": 23.170, "lon": 89.220,
+      "B4": 0.087, "B8": 0.224, "B11": 0.238, "B12": 0.154,
+      "soil_type": "high_ganges_floodplain", "district_code": "2D"
+    },
+    "jhalokati": {
+      "name_bn": "ঝালকাঠি",
+      "lat": 22.640, "lon": 90.200,
+      "B4": 0.051, "B8": 0.266, "B11": 0.192, "B12": 0.130,
+      "soil_type": "tidal_floodplain", "district_code": "5B"
+    },
+    "jhenaidah": {
+      "name_bn": "ঝিনাইদহ",
+      "lat": 23.540, "lon": 89.170,
+      "B4": 0.086, "B8": 0.226, "B11": 0.236, "B12": 0.153,
+      "soil_type": "high_ganges_floodplain", "district_code": "2E"
+    },
+    "joypurhat": {
+      "name_bn": "জয়পুরহাট",
+      "lat": 25.100, "lon": 89.020,
+      "B4": 0.088, "B8": 0.222, "B11": 0.240, "B12": 0.155,
+      "soil_type": "barind_tract", "district_code": "4E"
+    },
+    "khagrachari": {
+      "name_bn": "খাগড়াছড়ি",
+      "lat": 23.120, "lon": 91.970,
+      "B4": 0.043, "B8": 0.355, "B11": 0.134, "B12": 0.078,
+      "soil_type": "hill_soil", "district_code": "8G"
+    },
+    "khulna": {
+      "name_bn": "খুলনা সদর",
+      "lat": 22.845, "lon": 89.540,
+      "B4": 0.055, "B8": 0.262, "B11": 0.198, "B12": 0.134,
+      "soil_type": "tidal_floodplain", "district_code": "5D"
+    },
+    "kishoreganj": {
+      "name_bn": "কিশোরগঞ্জ",
+      "lat": 24.440, "lon": 90.780,
+      "B4": 0.047, "B8": 0.315, "B11": 0.153, "B12": 0.090,
+      "soil_type": "brahmaputra_floodplain", "district_code": "3J"
+    },
+    "kurigram": {
+      "name_bn": "কুড়িগ্রাম",
+      "lat": 25.820, "lon": 89.650,
+      "B4": 0.073, "B8": 0.269, "B11": 0.199, "B12": 0.123,
+      "soil_type": "tista_floodplain", "district_code": "1E"
+    },
+    "kushtia": {
+      "name_bn": "কুষ্টিয়া",
+      "lat": 23.900, "lon": 89.120,
+      "B4": 0.090, "B8": 0.219, "B11": 0.243, "B12": 0.157,
+      "soil_type": "high_ganges_floodplain", "district_code": "2A"
+    },
+    "lakshmipur": {
+      "name_bn": "লক্ষ্মীপুর",
+      "lat": 22.940, "lon": 90.830,
+      "B4": 0.057, "B8": 0.295, "B11": 0.170, "B12": 0.102,
+      "soil_type": "meghna_estuarine_floodplain", "district_code": "6F"
+    },
+    "lalmonirhat": {
+      "name_bn": "লালমনিরহাট",
+      "lat": 25.900, "lon": 89.450,
+      "B4": 0.075, "B8": 0.266, "B11": 0.202, "B12": 0.125,
+      "soil_type": "tista_floodplain", "district_code": "1F"
+    },
+    "madaripur": {
+      "name_bn": "মাদারীপুর",
+      "lat": 23.160, "lon": 90.190,
+      "B4": 0.068, "B8": 0.265, "B11": 0.195, "B12": 0.132,
+      "soil_type": "ganges_floodplain", "district_code": "3G"
+    },
+    "magura": {
+      "name_bn": "মাগুরা",
+      "lat": 23.490, "lon": 89.420,
+      "B4": 0.085, "B8": 0.230, "B11": 0.235, "B12": 0.150,
+      "soil_type": "low_ganges_floodplain", "district_code": "2H"
+    },
+    "manikganj": {
+      "name_bn": "মানিকগঞ্জ",
+      "lat": 23.860, "lon": 90.000,
+      "B4": 0.065, "B8": 0.275, "B11": 0.190, "B12": 0.125,
+      "soil_type": "ganges_jamuna_floodplain", "district_code": "3K"
+    },
+    "meherpur": {
+      "name_bn": "মেহেরপুর",
+      "lat": 23.760, "lon": 88.630,
+      "B4": 0.091, "B8": 0.217, "B11": 0.246, "B12": 0.159,
+      "soil_type": "high_ganges_floodplain", "district_code": "2F"
+    },
+    "moulvibazar": {
+      "name_bn": "মৌলভীবাজার",
+      "lat": 24.480, "lon": 91.770,
+      "B4": 0.041, "B8": 0.343, "B11": 0.141, "B12": 0.087,
+      "soil_type": "surma_floodplain", "district_code": "7B"
+    },
+    "munshiganj": {
+      "name_bn": "মুন্সীগঞ্জ",
+      "lat": 23.540, "lon": 90.530,
+      "B4": 0.060, "B8": 0.290, "B11": 0.170, "B12": 0.100,
+      "soil_type": "old_meghna_estuarine", "district_code": "3L"
+    },
+    "mymensingh": {
+      "name_bn": "ময়মনসিংহ সদর",
+      "lat": 24.748, "lon": 90.403,
+      "B4": 0.048, "B8": 0.312, "B11": 0.155, "B12": 0.092,
+      "soil_type": "brahmaputra_floodplain", "district_code": "3A"
+    },
+    "naogaon": {
+      "name_bn": "নওগাঁ",
+      "lat": 24.800, "lon": 88.930,
+      "B4": 0.086, "B8": 0.225, "B11": 0.238, "B12": 0.153,
+      "soil_type": "barind_tract", "district_code": "4F"
+    },
+    "narail": {
+      "name_bn": "নড়াইল",
+      "lat": 23.160, "lon": 89.500,
+      "B4": 0.083, "B8": 0.235, "B11": 0.232, "B12": 0.148,
+      "soil_type": "low_ganges_floodplain", "district_code": "2I"
+    },
+    "narayanganj": {
+      "name_bn": "নারায়ণগঞ্জ",
+      "lat": 23.620, "lon": 90.500,
+      "B4": 0.058, "B8": 0.295, "B11": 0.165, "B12": 0.098,
+      "soil_type": "old_meghna_estuarine", "district_code": "3M"
+    },
+    "narsingdi": {
+      "name_bn": "নরসিংদী",
+      "lat": 23.920, "lon": 90.720,
+      "B4": 0.062, "B8": 0.288, "B11": 0.172, "B12": 0.102,
+      "soil_type": "old_meghna_estuarine", "district_code": "3N"
+    },
+    "natore": {
+      "name_bn": "নাটোর",
+      "lat": 24.410, "lon": 89.010,
+      "B4": 0.080, "B8": 0.240, "B11": 0.225, "B12": 0.145,
+      "soil_type": "low_ganges_floodplain", "district_code": "2J"
+    },
+    "netrokona": {
+      "name_bn": "নেত্রকোণা",
+      "lat": 24.870, "lon": 90.730,
+      "B4": 0.046, "B8": 0.315, "B11": 0.152, "B12": 0.090,
+      "soil_type": "brahmaputra_floodplain", "district_code": "3S"
+    },
+    "nilphamari": {
+      "name_bn": "নীলফামারী",
+      "lat": 25.930, "lon": 88.850,
+      "B4": 0.077, "B8": 0.255, "B11": 0.225, "B12": 0.146,
+      "soil_type": "old_himalayan_piedmont", "district_code": "1G"
+    },
+    "noakhali": {
+      "name_bn": "নোয়াখালী",
+      "lat": 22.820, "lon": 91.100,
+      "B4": 0.056, "B8": 0.292, "B11": 0.172, "B12": 0.103,
+      "soil_type": "meghna_estuarine_floodplain", "district_code": "6A"
+    },
+    "pabna": {
+      "name_bn": "পাবনা",
+      "lat": 24.000, "lon": 89.250,
+      "B4": 0.082, "B8": 0.238, "B11": 0.228, "B12": 0.146,
+      "soil_type": "low_ganges_floodplain", "district_code": "2K"
+    },
+    "panchagarh": {
+      "name_bn": "পঞ্চগড়",
+      "lat": 26.340, "lon": 88.560,
+      "B4": 0.078, "B8": 0.253, "B11": 0.226, "B12": 0.147,
+      "soil_type": "old_himalayan_piedmont", "district_code": "1H"
+    },
+    "patuakhali": {
+      "name_bn": "পটুয়াখালী",
+      "lat": 22.350, "lon": 90.320,
+      "B4": 0.052, "B8": 0.270, "B11": 0.191, "B12": 0.129,
+      "soil_type": "tidal_floodplain", "district_code": "5G"
+    },
+    "pirojpur": {
+      "name_bn": "পিরোজপুর",
+      "lat": 22.580, "lon": 89.980,
+      "B4": 0.053, "B8": 0.267, "B11": 0.193, "B12": 0.130,
+      "soil_type": "tidal_floodplain", "district_code": "5H"
+    },
+    "rajbari": {
+      "name_bn": "রাজবাড়ী",
+      "lat": 23.750, "lon": 89.650,
+      "B4": 0.071, "B8": 0.258, "B11": 0.202, "B12": 0.136,
+      "soil_type": "ganges_floodplain", "district_code": "3O"
+    },
+    "rajshahi": {
+      "name_bn": "রাজশাহী সদর",
+      "lat": 24.374, "lon": 88.601,
+      "B4": 0.091, "B8": 0.218, "B11": 0.245, "B12": 0.158,
+      "soil_type": "barind_clay", "district_code": "2B"
+    },
+    "rangamati": {
+      "name_bn": "রাঙ্গামাটি",
+      "lat": 22.650, "lon": 92.170,
+      "B4": 0.042, "B8": 0.360, "B11": 0.130, "B12": 0.075,
+      "soil_type": "hill_soil", "district_code": "8H"
+    },
+    "rangpur": {
+      "name_bn": "রংপুর সদর",
+      "lat": 25.744, "lon": 89.254,
+      "B4": 0.074, "B8": 0.268, "B11": 0.201, "B12": 0.124,
+      "soil_type": "tista_floodplain", "district_code": "1A"
+    },
+    "satkhira": {
+      "name_bn": "সাতক্ষীরা",
+      "lat": 22.720, "lon": 89.070,
+      "B4": 0.054, "B8": 0.263, "B11": 0.197, "B12": 0.133,
+      "soil_type": "tidal_floodplain", "district_code": "5I"
+    },
+    "shariatpur": {
+      "name_bn": "শরীয়তপুর",
+      "lat": 23.230, "lon": 90.350,
+      "B4": 0.069, "B8": 0.263, "B11": 0.198, "B12": 0.134,
+      "soil_type": "ganges_floodplain", "district_code": "3P"
+    },
+    "sherpur": {
+      "name_bn": "শেরপুর",
+      "lat": 25.020, "lon": 90.020,
+      "B4": 0.049, "B8": 0.310, "B11": 0.156, "B12": 0.093,
+      "soil_type": "brahmaputra_floodplain", "district_code": "3T"
+    },
+    "sirajganj": {
+      "name_bn": "সিরাজগঞ্জ",
+      "lat": 24.450, "lon": 89.700,
+      "B4": 0.062, "B8": 0.290, "B11": 0.185, "B12": 0.118,
+      "soil_type": "jamuna_floodplain", "district_code": "2L"
+    },
+    "sunamganj": {
+      "name_bn": "সুনামগঞ্জ",
+      "lat": 25.070, "lon": 91.400,
+      "B4": 0.043, "B8": 0.339, "B11": 0.144, "B12": 0.089,
+      "soil_type": "surma_floodplain", "district_code": "7D"
+    },
+    "sylhet": {
+      "name_bn": "সিলেট সদর",
+      "lat": 24.894, "lon": 91.869,
+      "B4": 0.042, "B8": 0.341, "B11": 0.142, "B12": 0.088,
+      "soil_type": "clay_loam", "district_code": "7A"
+    },
+    "tangail": {
+      "name_bn": "টাঙ্গাইল",
+      "lat": 24.250, "lon": 89.920,
+      "B4": 0.063, "B8": 0.278, "B11": 0.188, "B12": 0.120,
+      "soil_type": "madhupur_clay", "district_code": "3I"
+    },
+    "thakurgaon": {
+      "name_bn": "ঠাকুরগাঁও",
+      "lat": 26.030, "lon": 88.470,
+      "B4": 0.076, "B8": 0.256, "B11": 0.224, "B12": 0.145,
+      "soil_type": "old_himalayan_piedmont", "district_code": "1C"
     }
   }
 }

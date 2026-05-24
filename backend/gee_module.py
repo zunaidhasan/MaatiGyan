@@ -113,7 +113,11 @@ def fetch_sentinel2_live(
     """
     Live mode: Query GEE COPERNICUS/S2_SR_HARMONIZED for recent
     cloud-free imagery at the given coordinates.
-    Returns None if GEE query fails (caller should fall back to demo).
+
+    Uses multi-tier search: tries strictest filter first, then progressively
+    relaxes date range and cloud cover thresholds to handle cloudy regions
+    or areas with infrequent satellite overpasses.
+    Returns None if all tiers fail (caller should fall back to demo).
     """
     try:
         # Authenticate with service account (File or JSON string)
@@ -133,54 +137,74 @@ def fetch_sentinel2_live(
             ee.Initialize(credentials)
 
         point = ee.Geometry.Point([lon, lat])
-        # 1km buffer for pixel sampling
-        region = point.buffer(500)
+        region = point.buffer(500)  # 1km buffer for pixel sampling
 
-        # Get most recent cloud-free Sentinel-2 image (last 30 days, <20% cloud)
-        collection = (
-            ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
-            .filterBounds(region)
-            .filterDate(
-                ee.Date(ee.Date.now().advance(-30, "day")),
-                ee.Date.now(),
+        # Multi-tier search: progressively relax date range and cloud cover
+        tiers = [
+            (30,  20,  "past 30 days, <20% cloud"),
+            (60,  40,  "past 60 days, <40% cloud"),
+            (90,  60,  "past 90 days, <60% cloud"),
+            (180, 80,  "past 180 days, <80% cloud"),
+        ]
+
+        for days_lookback, max_cloud, tier_label in tiers:
+            logger.info(f"GEE: Trying {tier_label} for ({lat:.4f}, {lon:.4f})")
+
+            collection = (
+                ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED")
+                .filterBounds(region)
+                .filterDate(
+                    ee.Date(ee.Date.now().advance(-days_lookback, "day")),
+                    ee.Date.now(),
+                )
+                .filter(ee.Filter.lt("CLOUDY_PIXEL_PERCENTAGE", max_cloud))
+                .sort("system:time_start", False)
             )
-            .filter(ee.Filter.lt("CLOUDY_PIXEL_PERCENTAGE", 20))
-            .sort("system:time_start", False)
-        )
 
-        image = collection.first()
-        if image is None:
-            logger.warning("GEE: No cloud-free Sentinel-2 image found in last 30 days")
-            return None
+            image = collection.first()
+            if image is None:
+                logger.info(f"GEE: No image with {tier_label}")
+                continue
 
-        # Sample spectral bands at the point
-        bands = ["B4", "B8", "B11", "B12"]
-        sample = image.select(bands).sample(region=point, scale=20, numPixels=1)
-        values = sample.first().getInfo()["properties"]
+            # Sample spectral bands at the point
+            bands = ["B4", "B8", "B11", "B12"]
+            sample = image.select(bands).sample(region=point, scale=20, numPixels=1)
+            sample_feature = sample.first()
+            if sample_feature is None:
+                logger.warning(f"GEE: Could not sample pixels at ({lat}, {lon}) with {tier_label}")
+                continue
 
-        # GEE Sentinel-2 SR values are scaled 0–10000 → normalize to 0–1
-        scale = 10000.0
+            values = sample_feature.getInfo()["properties"]
 
-        # Get image metadata
-        info = image.getInfo()
-        props = info.get("properties", {})
-        date_ms = props.get("system:time_start", 0)
-        from datetime import datetime
-        acq_date = datetime.fromtimestamp(date_ms / 1000).strftime("%Y-%m-%d")
+            # GEE Sentinel-2 SR values are scaled 0-10000 -> normalize to 0-1
+            scale = 10000.0
 
-        return SentinelBands(
-            B4=values["B4"] / scale,
-            B8=values["B8"] / scale,
-            B11=values["B11"] / scale,
-            B12=values["B12"] / scale,
-            lat=lat,
-            lon=lon,
-            district_name="Live",
-            district_name_bn="লাইভ তথ্য",
-            acquisition_date=acq_date,
-            cloud_cover=props.get("CLOUDY_PIXEL_PERCENTAGE", 0.0),
-            data_source="gee_live",
-        )
+            # Get image metadata
+            info = image.getInfo()
+            props = info.get("properties", {})
+            date_ms = props.get("system:time_start", 0)
+            from datetime import datetime
+            acq_date = datetime.fromtimestamp(date_ms / 1000).strftime("%Y-%m-%d")
+            cloud_cover = props.get("CLOUDY_PIXEL_PERCENTAGE", 0.0)
+
+            logger.info(f"GEE: Found image from {acq_date} ({cloud_cover:.1f}% cloud) via {tier_label}")
+
+            return SentinelBands(
+                B4=values["B4"] / scale,
+                B8=values["B8"] / scale,
+                B11=values["B11"] / scale,
+                B12=values["B12"] / scale,
+                lat=lat,
+                lon=lon,
+                district_name="Live",
+                district_name_bn="লাইভ তথ্য",
+                acquisition_date=acq_date,
+                cloud_cover=cloud_cover,
+                data_source="gee_live",
+            )
+
+        logger.warning(f"GEE: All tiers exhausted for ({lat:.4f}, {lon:.4f}) - no suitable Sentinel-2 imagery found")
+        return None
 
     except ImportError:
         logger.error("earthengine-api not installed. Run: pip install earthengine-api")
@@ -203,8 +227,8 @@ def get_sentinel2_bands(
     Main entry point. Tries live GEE if configured, falls back to demo mode.
     """
     # Validate Bangladesh coordinates (approximate bounding box)
-    if not (20.5 <= lat <= 26.7 and 88.0 <= lon <= 92.7):
-        logger.warning(f"Coordinates ({lat}, {lon}) outside Bangladesh bounds. Using demo data.")
+    if not (20.5667 <= lat <= 26.6333 and 88.0167 <= lon <= 92.6833):
+        logger.warning(f"Coordinates ({lat}, {lon}) outside Bangladesh bounds (20.57N-26.63N, 88.02E-92.68E). Using demo data.")
         demo_mode = True
 
     if not demo_mode and gee_service_account:
