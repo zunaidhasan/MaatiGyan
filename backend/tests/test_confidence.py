@@ -82,8 +82,8 @@ def test_live_data_shows_no_confidence():
         data_source="gee_live",
         nearest_demo_dist_km=0.0,
     )
-    # Should NOT contain confidence keywords
-    assert "নির্ভরযোগ্য" not in bangla, "Live data should not show Bangla confidence"
+    # Should NOT contain confidence emojis or keywords
+    assert "🟢" not in bangla and "🟡" not in bangla and "🟠" not in bangla and "🔴" not in bangla, "Live data should not show confidence emojis"
     assert "Confidence" not in english, "Live data should not show English confidence"
     # But should still contain the data source
     assert "লাইভ স্যাটেলাইট" in bangla, "Live data should label as live satellite"
@@ -102,7 +102,7 @@ def test_demo_zero_distance_shows_no_confidence():
         data_source="gee_demo",
         nearest_demo_dist_km=0.0,
     )
-    assert "নির্ভরযোগ্য" not in bangla, "Distance 0 should not show Bangla confidence"
+    assert "🟢" not in bangla and "🟡" not in bangla and "🟠" not in bangla and "🔴" not in bangla, "Distance 0 should not show confidence emojis"
     assert "Confidence" not in english, "Distance 0 should not show English confidence"
 
 
@@ -150,14 +150,14 @@ def test_medium_confidence_edge_499km():
         recommendation=make_mock_recommendation(),
         district_name_bn="টেস্ট",
         district_code="TST",
-        lat=24.50,
+        lat=24.37,
         lon=89.00,
         acquisition_date="2025-05-25",
         data_source="gee_demo",
         nearest_demo_dist_km=49.9,
     )
     assert "Medium Confidence" in english, "49.9km should be Medium"
-    assert "50" in english, "Should round to 50"
+    assert "~50" in english, "Should round to 50km"
 
 
 def test_low_confidence_under_100km():
@@ -283,5 +283,7 @@ def test_bangla_numerals_in_confidence():
         nearest_demo_dist_km=25.0,
     )
     # Distance 25 in Bangla numerals is ২৫
+    # Note: "25" can appear elsewhere in the report (e.g. coordinates),
+    # so we verify Bangla numerals ARE used instead of asserting "25" is absent.
     assert "২৫" in bangla, "Bangla confidence should use Bangla numerals"
-    assert "25" not in bangla, "Bangla confidence should NOT use Western numerals for distance"
+    assert "~25" not in bangla, "Bangla confidence should NOT use Western km format"
