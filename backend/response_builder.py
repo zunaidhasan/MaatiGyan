@@ -46,6 +46,7 @@ def build_bangla_report(
     data_source: str,
     farmer_name: Optional[str] = None,
     land_area: float = 1.0,
+    nearest_demo_dist_km: float = 0.0,
 ) -> tuple[str, str]:
     """
     Build formatted Bangla + English soil reports.
@@ -59,6 +60,24 @@ def build_bangla_report(
     rec = recommendation
 
     divider = "━" * 22
+
+    # ── Location Confidence ──
+    if data_source == "gee_demo" and nearest_demo_dist_km > 0:
+        if nearest_demo_dist_km < 10:
+            confidence_bn = "🟢 *অত্যন্ত নির্ভরযোগ্য* — আপনার এলাকা কাছাকাছি ক্যালিব্রেটেড ডেটা"
+            confidence_en = "🟢 *High Confidence* — Your area has nearby calibrated data"
+        elif nearest_demo_dist_km < 50:
+            confidence_bn = f"🟡 *মাঝারি নির্ভরযোগ্য* — ক্যালিব্রেটেড জেলা থেকে {to_bangla_num(round(nearest_demo_dist_km))} কি.মি. দূরে"
+            confidence_en = f"🟡 *Medium Confidence* — ~{round(nearest_demo_dist_km)}km from nearest calibrated district"
+        elif nearest_demo_dist_km < 100:
+            confidence_bn = f"🟠 *সীমিত নির্ভরযোগ্য* — ক্যালিব্রেটেড জেলা থেকে {to_bangla_num(round(nearest_demo_dist_km))} কি.মি. দূরে। ফলাফল আনুমানিক।"
+            confidence_en = f"🟠 *Low Confidence* — ~{round(nearest_demo_dist_km)}km from nearest calibrated district. Results are approximate."
+        else:
+            confidence_bn = f"🔴 *অত্যন্ত সীমিত নির্ভরযোগ্য* — ক্যালিব্রেটেড জেলা থেকে {to_bangla_num(round(nearest_demo_dist_km))} কি.মি. দূরে। ফলাফল শুধুমাত্র নির্দেশক।"
+            confidence_en = f"🔴 *Very Low Confidence* — ~{round(nearest_demo_dist_km)}km from nearest calibrated district. Indicative only."
+    else:
+        confidence_bn = ""
+        confidence_en = ""
 
     # ── Savings line ──
     if savings.get("urea_saved_kg", 0) > 0:
@@ -102,6 +121,7 @@ _(মাটিজ্ঞান — স্যাটেলাইট মাটি �
 📍 *এলাকা:* {district_name_bn} | ব্লক: {district_code}
 🛰️ *উপগ্রহ তথ্য:* {source_date} ({data_label})
 🌍 *স্থানাঙ্ক:* {lat:.4f}°N, {lon:.4f}°E
+{confidence_bn}
 {divider}
 🧪 *মাটির স্বাস্থ্য রিপোর্ট*
 {divider}
@@ -142,6 +162,7 @@ _(MaatiGyan — Satellite Soil Intelligence)_
 📍 *Location:* {district_name_bn} | Block: {district_code}
 🛰️ *Satellite Data:* {source_date} ({data_source})
 🌍 *Coordinates:* {lat:.4f}°N, {lon:.4f}°E
+{confidence_en}
 {divider}
 🧪 *SOIL HEALTH ANALYSIS*
 {divider}
@@ -267,6 +288,7 @@ def build_soil_report(
         lat, lon, acquisition_date, data_source,
         farmer_name=farmer_name,
         land_area=land_area,
+        nearest_demo_dist_km=nearest_demo_dist_km,
     )
 
     # Select report text based on language preference

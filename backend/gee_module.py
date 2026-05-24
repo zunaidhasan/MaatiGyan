@@ -33,6 +33,7 @@ class SentinelBands:
     acquisition_date: str
     cloud_cover: float
     data_source: str  # "gee_live" | "gee_demo"
+    nearest_demo_dist_km: float = 0.0  # Distance to nearest demo district (0 = live data)
 
 
 def _load_demo_districts(coefficients_path: str) -> dict:
@@ -42,8 +43,9 @@ def _load_demo_districts(coefficients_path: str) -> dict:
     return data.get("demo_districts", {})
 
 
-def _find_nearest_demo_district(lat: float, lon: float, districts: dict) -> tuple[str, dict]:
-    """Find the closest demo district to the given coordinates using Haversine distance"""
+def _find_nearest_demo_district(lat: float, lon: float, districts: dict) -> tuple[str, dict, float]:
+    """Find the closest demo district to the given coordinates using Haversine distance.
+    Returns (district_key, district_data, distance_km)."""
     best_dist = float("inf")
     best_key = "bogura"
     best_data = None
@@ -58,7 +60,7 @@ def _find_nearest_demo_district(lat: float, lon: float, districts: dict) -> tupl
             best_key = key
             best_data = d
 
-    return best_key, best_data
+    return best_key, best_data, best_dist
 
 
 def fetch_sentinel2_demo(
@@ -75,7 +77,7 @@ def fetch_sentinel2_demo(
     import random
 
     districts = _load_demo_districts(coefficients_path)
-    district_key, district_data = _find_nearest_demo_district(lat, lon, districts)
+    district_key, district_data, nearest_dist = _find_nearest_demo_district(lat, lon, districts)
 
     # Add small Gaussian noise to simulate real variability
     rng = random.Random(hash(f"{lat:.3f}{lon:.3f}"))
@@ -100,6 +102,7 @@ def fetch_sentinel2_demo(
         acquisition_date=acquisition_date,
         cloud_cover=rng.uniform(2.0, 12.0),
         data_source="gee_demo",
+        nearest_demo_dist_km=round(nearest_dist, 1),
     )
 
 
@@ -201,6 +204,7 @@ def fetch_sentinel2_live(
                 acquisition_date=acq_date,
                 cloud_cover=cloud_cover,
                 data_source="gee_live",
+                nearest_demo_dist_km=0.0,
             )
 
         logger.warning(f"GEE: All tiers exhausted for ({lat:.4f}, {lon:.4f}) - no suitable Sentinel-2 imagery found")

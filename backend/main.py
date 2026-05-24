@@ -127,6 +127,7 @@ async def process_soil_analysis(
         lon=lon,
         acquisition_date=bands.acquisition_date,
         data_source=bands.data_source,
+        nearest_demo_dist_km=bands.nearest_demo_dist_km,
         audio_dir=SETTINGS.audio_dir,
         generate_audio=True,
         language=language,
