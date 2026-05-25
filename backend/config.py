@@ -16,7 +16,7 @@ class Settings(BaseSettings):
     app_host: str = "0.0.0.0"
     app_port: int = 8000
     log_level: str = "info"
-    demo_mode: bool = False  # False = uses real external APIs
+    demo_mode: bool = True   # True = uses pre-loaded demo data
 
     # ── WhatsApp Cloud API ───────────────────────────────────
     whatsapp_token: str = ""

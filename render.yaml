@@ -9,7 +9,7 @@ services:
       - key: APP_NAME
         value: MaatiGyan (মাটিজ্ঞান)
       - key: DEMO_MODE
-        value: "false"
+        value: "true"
       - key: GROQ_API_KEY
         sync: false
       - key: GEE_SERVICE_ACCOUNT
